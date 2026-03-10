@@ -1,5 +1,5 @@
 {
-  "name": "blahaj.4k.pics",
+  "name": "neko.4k.pics",
   "version": "1.0.0",
   "description": "A simple website displaying random images of IKEA's Blåhaj shark plush toy. Powered by transgirl.wamellow.com.",
   "private": true,
@@ -25,12 +25,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/4kpics-reg/blahaj.4k.pics"
+    "url": "https://github.com/4kpics-reg/neko.4k.pics"
   },
   "author": "Thusuzzee",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/4kpics-reg/blahaj.4k.pics/issues"
+    "url": "https://github.com/4kpics-reg/neko.4k.pics/issues"
   },
-  "homepage": "https://blahaj.4k.pics"
+  "homepage": "https://neko.4k.pics"
 }
