@@ -1,0 +1,434 @@
+/* Font Definition */
+@font-face {
+    font-family: "Space Grotesk";
+    src: url("/fonts/SpaceGrotesk-VariableFont_wght.ttf") format("truetype");
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Color Variables */
+:root {
+    /* Background Colors */
+    --bg-color: #0d0d0d;
+    --modal-bg: #1a1a2e;
+
+    /* Text Colors */
+    --text-color: #fff;
+
+    /* Button Colors */
+    --btn-bg-color: #c2185b;
+    --btn-hover-color: #ad1457;
+    --btn-disabled-color: #4a3f5c;
+
+    /* Social Button Colors */
+    --social-btn-bg: #2a2040;
+    --social-btn-hover: #3a2f58;
+
+    /* Border and Accent Colors */
+    --border-color: #e91e8c;
+    --modal-border: #3d2f5e;
+    --highlight-color: #f06292;
+
+    /* Glow/Shadow Colors */
+    --glow-inner: #e91e8c;
+    --glow-middle: rgba(233, 30, 140, 0.7);
+    --glow-outer: rgba(233, 30, 140, 0.4);
+}
+
+/* Light Theme Color Variables */
+[data-theme="light"] {
+    /* Background Colors */
+    --bg-color: #fce4ec;
+    --modal-bg: #ffffff;
+
+    /* Text Colors */
+    --text-color: #1a0030;
+
+    /* Social Button Colors */
+    --social-btn-bg: #7b1fa2;
+    --social-btn-hover: #9c27b0;
+
+    /* Border Colors */
+    --modal-border: #f48fb1;
+}
+
+/* Global Base Styles */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--bg-color);
+    font-family: "Space Grotesk", Arial, sans-serif;
+}
+
+/* Transition Styles */
+html,
+body {
+    transition:
+        background-color 0.5s ease,
+        color 0.5s ease;
+}
+
+#image-container,
+#displayed-image,
+.modal-content,
+.btn,
+.icon {
+    transition:
+        background-color 0.5s ease,
+        color 0.5s ease,
+        border-color 0.5s ease,
+        box-shadow 0.5s ease,
+        opacity 0.5s ease,
+        filter 0.5s ease;
+}
+
+/* Keyframe Animations */
+@keyframes swimEmoji {
+    0% {
+        transform: translateX(-30px) rotate(-5deg);
+    }
+    50% {
+        transform: translateX(30px) rotate(5deg);
+    }
+    100% {
+        transform: translateX(-30px) rotate(-5deg);
+    }
+}
+
+@keyframes modalFadeIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Accessibility Enhancements */
+.btn:focus-visible {
+    outline: 2px solid #f06292;
+    outline-offset: 2px;
+}
+
+/* Image Container Styles */
+#image-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#displayed-image {
+    max-width: 100%;
+    max-height: 85%;
+    object-fit: contain;
+    transition: opacity 0.5s ease;
+    border-radius: 20px;
+    border: 3px solid #e91e8c;
+    box-shadow: 0 0 30px rgba(233, 30, 140, 0.6);
+}
+
+/* Loading Styles */
+#loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    z-index: 10;
+    transition: opacity 0.5s ease;
+}
+
+.emoji-loader {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    animation: swimEmoji 2s infinite ease-in-out;
+    display: inline-block;
+}
+
+.loading-text {
+    margin-top: 10px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.credit-text {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+[data-theme="light"] .credit-text {
+    color: rgba(26, 0, 48, 0.85);
+    font-weight: 600;
+}
+
+/* Button Container Styles */
+#button-container {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    z-index: 5;
+    flex-wrap: wrap;
+    padding: 0 10px;
+}
+
+/* General Button Styles */
+.btn {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Refresh Button Styles */
+.btn-refresh {
+    background-color: var(--btn-bg-color);
+    min-width: 170px;
+    height: 50px;
+    font-size: 18px;
+    padding: 0 20px;
+    letter-spacing: 0.02em;
+    font-family: "Space Grotesk", Arial, sans-serif;
+    white-space: nowrap;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    font-weight: 600;
+}
+
+.btn-refresh:disabled,
+.btn-refresh.btn-loading {
+    background-color: var(--btn-disabled-color);
+    cursor: not-allowed;
+    transform: none;
+    opacity: 0.9;
+    color: #ffffff;
+}
+
+.btn-refresh:hover:not(:disabled):not(.btn-loading) {
+    background-color: var(--btn-hover-color);
+    transform: translateY(-2px);
+}
+
+.btn-refresh:active:not(:disabled):not(.btn-loading) {
+    transform: translateY(1px);
+}
+
+/* Social Button Styles */
+.btn-social {
+    background-color: var(--social-btn-bg);
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-social:hover {
+    background-color: var(--social-btn-hover);
+    transform: translateY(-2px);
+}
+
+.btn-github:hover {
+    background-color: #333;
+}
+
+.btn-bluesky:hover {
+    background-color: #1da1f2;
+}
+
+/* Icon Styles */
+.icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.btn-refresh .icon {
+    margin-right: 8px;
+}
+
+.btn-discord:hover {
+    background-color: #5865f2;
+}
+
+/* Theme Icon Visibility */
+.theme-icon-dark {
+    display: block;
+}
+
+.theme-icon-light {
+    display: none;
+}
+
+[data-theme="light"] .theme-icon-dark {
+    display: none;
+}
+
+[data-theme="light"] .theme-icon-light {
+    display: block;
+}
+
+/* Icon Color Handling */
+body:not([data-theme="light"]) .icon {
+    filter: brightness(0) invert(1);
+}
+
+[data-theme="light"] .icon {
+    filter: brightness(0) invert(0.2);
+}
+
+.btn-bluesky .icon {
+    filter: none;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--modal-bg);
+    border-radius: 10px;
+    max-width: 90%;
+    width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(233, 30, 140, 0.2);
+    border: 1px solid var(--modal-border);
+    animation: modalFadeIn 0.3s ease;
+    color: var(--text-color);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--modal-border);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.modal-body {
+    padding: 20px;
+    line-height: 1.5;
+}
+
+/* Modal Typography */
+.modal-header h2 {
+    margin: 0;
+    font-family: "Space Grotesk", Arial, sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+}
+
+.modal-body h3 {
+    margin-top: 25px;
+    margin-bottom: 12px;
+    font-family: "Space Grotesk", Arial, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--highlight-color);
+}
+
+.modal-body h4 {
+    margin-top: 18px;
+    margin-bottom: 10px;
+    font-family: "Space Grotesk", Arial, sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.modal-body p {
+    font-weight: 400;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.modal-body ul {
+    padding-left: 20px;
+}
+
+.modal-body li {
+    margin-bottom: 5px;
+}
+
+.modal-body a,
+.domain-highlight {
+    color: var(--highlight-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.modal-body a:hover {
+    text-decoration: underline;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 600px) {
+    #displayed-image {
+        max-width: 90%;
+        max-height: 80%;
+        border-radius: 15px;
+    }
+
+    .btn-refresh {
+        min-width: 140px;
+        height: 45px;
+        font-size: 16px;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+}

@@ -1,0 +1,53 @@
+# Random Neko Website
+
+A simple website displaying random images of an Neko. Powered by [NEKOSBEST](https://nekos.best).
+
+A preview of the website can be viewed on [neko.4k.pics](https://neko.4k.pics), featuring light/dark mode and PWA capabilities.
+
+## Quick Start
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/4kpics-reg/neko.4k.pics.git
+   cd neko.4k.pics
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # Or use pnpm: pnpm install
+   # Or use Bun: bun install
+   ```
+
+3. Run development server:
+   ```bash
+   npm run dev
+   # Or use pnpm: pnpm dev
+   # Or use Bun: bun dev
+   ```
+
+## Production Build
+
+1. Build the project:
+   ```bash
+   npm run build
+   # Or use pnpm: pnpm build
+   # Or use Bun: bun run build
+   ```
+
+2. Preview the production build:
+   ```bash
+   npm run preview
+   # Or use pnpm: pnpm preview
+   # Or use Bun: bun run preview
+   ```
+
+3. Deploy the `dist` directory to your web server.
+
+## Contributing
+
+Contributions are more than welcome! Whether it's bug fixes, new features, documentation improvements, or design enhancements, your input is valued. Feel free to open issues, submit pull requests, or reach out with any ideas.
+
+## License
+
+[MIT License](./LICENSE)
